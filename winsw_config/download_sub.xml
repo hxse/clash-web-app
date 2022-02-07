@@ -1,0 +1,10 @@
+<service>
+  <id>download_sub</id>
+  <name>download_sub</name>
+  <description>download_sub</description>
+  <executable>C:\Users\hxse\scoop\apps\python\current\python.exe</executable>
+  <workingdirectory>%BASE%\..\</workingdirectory>
+  <arguments>"./python_script/download_sub.py"</arguments>
+  <log mode="roll"></log>
+  <logpath>%BASE%\..\logs\download_sub</logpath>
+</service>

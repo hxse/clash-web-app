@@ -1,0 +1,10 @@
+<service>
+  <id>clash_control</id>
+  <name>clash_control</name>
+  <description>clash_control</description>
+  <executable>C:\Users\hxse\scoop\apps\python\current\python.exe</executable>
+  <workingdirectory>D:\App\clash-dashboard\dist</workingdirectory>
+  <arguments>-m "http.server" 9091</arguments>
+  <log mode="roll"></log>
+  <logpath>%BASE%\..\logs\clash_control</logpath>
+</service>

@@ -1,0 +1,10 @@
+<service>
+  <id>run_clash</id>
+  <name>run_clash</name>
+  <description>run_clash</description>
+  <executable>C:\Users\hxse\scoop\shims\clash.exe</executable>
+  <workingdirectory>%BASE%\..\</workingdirectory>
+  <arguments>-f config/current.yaml</arguments>
+  <log mode="roll"></log>
+  <logpath>%BASE%\..\logs\run_clash</logpath>
+</service>
