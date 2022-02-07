@@ -35,7 +35,9 @@ def set_meta(meta):
 
 
 def get_config():
-    get_url = lambda x: config["convert"] + x["url"]
+    get_url = (
+        lambda x: x["url"] if not config["convert"] else config["convert"] + x["url"]
+    )
     get_meta = lambda x: {"name": x["name"]}
     reqArr = [
         grequests.get(
