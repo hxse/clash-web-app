@@ -2,11 +2,9 @@
 # coding: utf-8
 import time
 import json
-from download_sub import update
 
 while 1:
-    with open("config/config.json", "r", encoding="utf-8") as file:
-        config = json.load(file)
-    update(config["origin"])
+    from download_sub import update
+    update()
     print("waiting...")
-    time.sleep(60 * 6)
+    time.sleep(10)

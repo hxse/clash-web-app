@@ -5,6 +5,6 @@
   <executable>D:\App\subconverter\subconverter.exe</executable>
   <workingdirectory>D:\App\subconverter</workingdirectory>
   <arguments></arguments>
-  <log mode="roll"></log>
+  <log mode="roll-by-size"></log>
   <logpath>%BASE%\..\logs\subconverter</logpath>
 </service>
