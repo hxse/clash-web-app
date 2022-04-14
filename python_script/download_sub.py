@@ -13,6 +13,7 @@ if not configPath.is_file():
     raise "请创建配置文件或检查目录"
 with open(configPath, "r", encoding="utf-8") as file:
     config = json.load(file)
+    print(config)
 
 
 def hard_link(origin, target):
@@ -45,6 +46,7 @@ def get_config():
         )
         for subs in config["subscription"]
     ]
+    print('request length:',len(reqArr))
     for res in grequests.imap(reqArr, size=10):
         if res.status_code == 200:
             print("订阅返回成功", res.meta["name"], res.url)
