@@ -46,14 +46,17 @@ def get_config():
         )
         for subs in config["subscription"]
     ]
-    print('request length:',len(reqArr))
-    for res in grequests.imap(reqArr, size=10):
+    print("start requests length:", len(reqArr))
+    resArr = grequests.imap(reqArr, size=10)
+    for res in resArr:
         if res.status_code == 200:
             print("订阅返回成功", res.meta["name"], res.url)
             with open("config/" + res.meta["name"], "w", encoding="utf8") as f:
                 f.write(res.text)
         else:
             print("订阅返回失败", res.meta["name"], res.url)
+
+    print("end")
 
 
 def reload_config(path, url="http://127.0.0.1:9090/configs"):
