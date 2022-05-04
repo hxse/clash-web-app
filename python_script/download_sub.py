@@ -74,7 +74,6 @@ def update(origin=config["origin"], update=True, reload=True):
     # origin: 指定配置文件
     # update: 下载更新订阅
     # reload: 重载配置文件
-    print(origin)
     origin = get_alias(origin)
     if update:
         get_config()
