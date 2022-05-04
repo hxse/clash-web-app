@@ -80,12 +80,12 @@ def update(origin=config["origin"], update=True, reload=True):
     hard_link(origin, config["target"])
 
     # 如果指定参数则更新配置文件里的默认参数
-    with open(configPath, "w", encoding="utf-8") as file:
-        if update:
-            config["last_time"] = f"{datetime.datetime.now()}"
-        if origin != config["origin"]:
-            config["origin"] = origin
-        if update or origin != config["origin"]:
+    if update:
+        config["last_time"] = f"{datetime.datetime.now()}"
+    if origin != config["origin"]:
+        config["origin"] = origin
+    if update or origin != config["origin"]:
+        with open(configPath, "w", encoding="utf-8") as file:
             json.dump(config, file, ensure_ascii=False, indent=4)
 
     if reload:
