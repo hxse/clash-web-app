@@ -36,9 +36,10 @@ def hard_link(origin, target):
     target = Path(target)
     if not origin.is_file():
         raise "源文件不存在,请输入正确路径"
-    if target.is_file():
-        target.unlink()
-    origin.link_to(target)
+    with open(origin, "rb") as o:
+        with open(target, "wb") as t:
+            t.write(o.read())
+    # target.hardlink_to(origin)
 
 
 def set_meta(meta):
@@ -84,10 +85,34 @@ def get_alias(key):
     return key
 
 
+def check_country_mmdb():
+    import gzip
+
+    url = "https://unpkg.com/geolite2-country/GeoLite2-Country.mmdb.gz"
+    fileType = "gz" if url.endswith(".gz") else ""
+
+    countryPath = Path("./config/Country.mmdb")
+    if not countryPath.is_file():
+        res = requests.get(url)
+        if res.status_code == 200:
+            if fileType == "gz":
+                result = gzip.decompress(res.content)
+            else:
+                result = res.content
+            with open(countryPath, "wb") as f:
+                f.write(result)
+        else:
+            print("获取geoip失败")
+
+
 def update(origin=config["origin"], update=True, reload=True):
-    # origin: 指定配置文件
-    # update: 下载更新订阅
-    # reload: 重载配置文件
+    """
+    origin: 指定配置文件
+    update: 下载更新订阅
+    reload: 重载配置文件
+    """
+    check_country_mmdb()
+
     origin = get_alias(origin)
     if update:
         get_config()
