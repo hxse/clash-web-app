@@ -16,6 +16,20 @@ with open(configPath, "r", encoding="utf-8") as file:
     print(config)
 
 
+def convert_timeout(time):
+    timeout = 1
+    if str(type(time)) == "<class 'str'>":
+        for i in time.split("*"):
+            if i.strip():
+                timeout = timeout * int(i.strip())
+    else:
+        timeout = time
+    return timeout
+
+
+loop_timeout = convert_timeout(config["loop_timeout"])
+
+
 def hard_link(origin, target):
     # 不要用软链接, 因为clash不支持快捷方式
     origin = Path(origin)

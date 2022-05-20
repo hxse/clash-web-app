@@ -4,7 +4,7 @@
   <description>run_clash</description>
   <executable>C:\Users\hxse\scoop\shims\clash.exe</executable>
   <workingdirectory>%BASE%\..\</workingdirectory>
-  <arguments>-f config/current.yaml</arguments>
+  <arguments>-d .\config</arguments>
   <log mode="roll-by-size"></log>
   <logpath>%BASE%\..\logs\run_clash</logpath>
 </service>

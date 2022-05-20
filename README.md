@@ -12,24 +12,20 @@
   * `curl -X PUT -H "Content-Type:application/json" -d "{\"path\":\"D:\\clash\\config.yaml\"}" http://127.0.0.1:9090/configs`
 
 # 配置文件示例
-```
+```config.json
 {
-    "origin": ".\\config\\<name>.yaml",
-    "target": ".\\config\\current.yaml",
-    "convert": "http://127.0.0.1:25500/sub?target=clash&url=",
-    "timeout": 6,
-    "last_time": "",
-    "subscription": [
-        {
-            "name": "<name>.yaml",
-            "url": "<your url>",
-            "alias": "<your key>"
-        },
-        {
-            "name": "<name>.yaml",
-            "url": "<your url>",
-            "alias": "<your key>"
-        }
+  "origin": ".\\config\\gatern.yaml",
+  "target": ".\\config\\config.yaml",
+  "convert": "http://127.0.0.1:25500/sub?target=clash&url=",
+  "timeout": 15,
+  "loop_timeout": "1*60*60*6",
+  "last_time": "2022-05-20 10:34:30.989277",
+  "subscription": [
+    {
+      "name": "gatern.yaml",
+      "url": "https://sub.shuttle.mobi/app/clash",
+      "alias": "g"
+    }
     ]
 }
 ```
