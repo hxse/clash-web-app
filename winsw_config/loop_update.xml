@@ -2,9 +2,9 @@
   <id>loop_update</id>
   <name>loop_update</name>
   <description>loop_update</description>
-  <executable>C:\Users\hxse\scoop\apps\python\current\python.exe</executable>
-  <workingdirectory>%BASE%\..\</workingdirectory>
-  <arguments>"./python_script/loop_update.py"</arguments>
+  <executable>C:\Users\hxse\scoop\shims\pdm.exe</executable>
+  <workingdirectory>%BASE%\..\python_script</workingdirectory>
+  <arguments>run python "./loop_update.py"</arguments>
   <log mode="roll-by-size"></log>
   <logpath>%BASE%\..\logs\loop_update</logpath>
 </service>

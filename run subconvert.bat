@@ -1,2 +1,2 @@
-gsudo winsw restart .\winsw_config\subcovert.xml
+sudo winsw restart .\winsw_config\subcovert.xml
 

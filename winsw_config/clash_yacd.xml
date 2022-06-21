@@ -1,0 +1,10 @@
+<service>
+  <id>clash_yacd</id>
+  <name>clash_yacd</name>
+  <description>clash_yacd</description>
+  <executable>C:\Users\hxse\scoop\apps\python\current\python.exe</executable>
+  <workingdirectory>%BASE%\..\..\yacd-gh-pages\yacd-gh-pages</workingdirectory>
+  <arguments>-m "http.server" 9092</arguments>
+  <log mode="roll-by-size"></log>
+  <logpath>%BASE%\..\logs\clash_yacd</logpath>
+</service>

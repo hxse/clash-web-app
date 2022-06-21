@@ -2,8 +2,8 @@
   <id>run_subconverter</id>
   <name>run_subconverter</name>
   <description>run_subconverter</description>
-  <executable>D:\App\subconverter\subconverter.exe</executable>
-  <workingdirectory>D:\App\subconverter</workingdirectory>
+  <executable>%BASE%\..\..\subconverter\subconverter\subconverter.exe</executable>
+  <workingdirectory>%BASE%\..\..\subconverter\subconverter\</workingdirectory>
   <arguments></arguments>
   <log mode="roll-by-size"></log>
   <logpath>%BASE%\..\logs\subconverter</logpath>

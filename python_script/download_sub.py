@@ -8,7 +8,8 @@ import os
 from pathlib import Path
 import datetime
 
-configPath = Path("./config/config.json")
+configDir = Path("../config")
+configPath = configDir / "config.json"
 if not configPath.is_file():
     raise "请创建配置文件或检查目录"
 with open(configPath, "r", encoding="utf-8") as file:
@@ -66,11 +67,10 @@ def get_config():
     for res in resArr:
         if res.status_code == 200:
             print("订阅返回成功", res.meta["name"], res.url)
-            with open("config/" + res.meta["name"], "w", encoding="utf8") as f:
+            with open(configDir / res.meta["name"], "w", encoding="utf8") as f:
                 f.write(res.text)
         else:
             print("订阅返回失败", res.meta["name"], res.url)
-
     print("end")
 
 
@@ -81,7 +81,7 @@ def reload_config(path, url="http://127.0.0.1:9090/configs"):
 def get_alias(key):
     for i in config["subscription"]:
         if key == i["alias"]:
-            return f'.\\config\\{i["name"]}'
+            return configDir / i["name"]
     return key
 
 
@@ -91,7 +91,7 @@ def check_country_mmdb():
     url = "https://unpkg.com/geolite2-country/GeoLite2-Country.mmdb.gz"
     fileType = "gz" if url.endswith(".gz") else ""
 
-    countryPath = Path("./config/Country.mmdb")
+    countryPath = configDir / "Country.mmdb"
     if not countryPath.is_file():
         res = requests.get(url)
         if res.status_code == 200:
@@ -105,7 +105,7 @@ def check_country_mmdb():
             print("获取geoip失败")
 
 
-def update(origin=config["origin"], update=True, reload=True):
+def update(origin=None, update=True, reload=True):
     """
     origin: 指定配置文件
     update: 下载更新订阅
@@ -113,17 +113,20 @@ def update(origin=config["origin"], update=True, reload=True):
     """
     check_country_mmdb()
 
-    origin = get_alias(origin)
+    origin = Path(get_alias(origin)) if origin else configDir / config["origin"]
+    target = configDir / config["target"]
+    originName = origin.name
     if update:
         get_config()
-    hard_link(origin, config["target"])
+    hard_link(origin, target)
 
     # 如果指定参数则更新配置文件里的默认参数
     if update:
         config["last_time"] = f"{datetime.datetime.now()}"
-    if origin != config["origin"]:
-        config["origin"] = origin
-    if update or origin != config["origin"]:
+
+    if originName != config["origin"]:
+        config["origin"] = originName
+    if update or originName != config["origin"]:
         with open(configPath, "w", encoding="utf-8") as file:
             json.dump(config, file, ensure_ascii=False, indent=4)
 
