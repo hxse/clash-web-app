@@ -1,10 +1,10 @@
 <service>
-  <id>run_clash</id>
-  <name>run_clash</name>
-  <description>run_clash</description>
-  <executable>C:\Users\hxse\scoop\shims\clash.exe</executable>
+  <id>run_clash2</id>
+  <name>run_clash2</name>
+  <description>run_clash2</description>
+  <executable>D:\App\proxy\clash-premium\clash-windows-386.exe</executable>
   <workingdirectory>%BASE%\..\</workingdirectory>
-  <arguments>-d .\config</arguments>
+  <arguments>-d D:\my_repo\clash-rule-providers</arguments>
   <log mode="roll-by-size"></log>
-  <logpath>%BASE%\..\logs\run_clash</logpath>
+  <logpath>%BASE%\..\logs\run_clash2</logpath>
 </service>
